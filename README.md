@@ -1,6 +1,8 @@
-# SPC Data Buffer Sheet
+# SunFounder_Power_Control
 
-## dataBuffer
+## Data Buffer Sheet
+
+### dataBuffer
 
 |name|addr|len|type|unit|description|
 |:--|:--:|:--:|:--:|:--:|:--|
@@ -38,7 +40,7 @@
 |-|-|-|-|-|-|
 |-|-|-|-|-|-|
 
-## settingBuffer
+### settingBuffer
 
 |name|addr|len|type|unit|description|
 |:--|:--:|:--:|:--:|:--:|:--|

@@ -1,7 +1,7 @@
-#include <SPC.h>
+#include <SunFounderPowerControl.h>
 #include <Wire.h>
 
-SPC spc;
+SunFounderPowerControl spc;
 
 void setup() {
   Serial.begin(9600);

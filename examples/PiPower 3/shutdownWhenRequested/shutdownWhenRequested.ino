@@ -3,10 +3,10 @@
 // Shutdown signal, and pull it down to GND to poweroff pipower after you do
 // what you want to do before poweroff.
 
-#include "SPC.h"
+#include "SunFounder_SPC.h"
 #include <Wire.h>
 
-SPC spc;
+SunFounderPowerControl spc;
 
 uint8_t SDSIG = 2;
 
