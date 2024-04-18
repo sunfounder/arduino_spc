@@ -1,5 +1,298 @@
 # SunFounder_Power_Control
 
+## API
+
+### Class SunFounderPowerControl()
+
+Class for SunFounder Power Control.
+
+```
+SunFounderPowerControl spc;
+```
+
+### Properties
+
+#### device_t SunFounderPowerControl.device
+
+current device type.
+
+```
+Serial.println(spc.device.name)
+```
+
+#### String SunFounderPowerControl.firmwareVersion
+
+firmware version
+
+```
+Serial.println(spc.firmwareVersion.c_str())
+```
+
+
+### Methods
+
+#### int8_t SunFounderPowerControl.begin()
+
+Begin 
+
+```
+int8_t result = spc.begin();
+if (result == -1) {
+    Serial.println("[ERROR] Device not found");
+    while (1);;
+}
+```
+
+#### uint16_t SunFounderPowerControl.readInputVoltage()
+
+Read the input voltage in mV.
+
+```
+Serial.print("Input voltage: ");
+Serial.print(spc.readInputVoltage());
+Serial.println(" mV");
+```
+
+#### uint16_t SunFounderPowerControl.readInputCurrent()
+
+Read the input current in mA.
+
+```
+Serial.print("Input current: ");
+Serial.print(spc.readInputCurrent());
+Serial.println(" mA");
+```
+
+#### uint16_t SunFounderPowerControl.readOutputVoltage()
+
+Read the output voltage in mV.
+
+```
+Serial.print("Output voltage: ");
+Serial.print(spc.readOutputVoltage());
+Serial.println(" mV");
+```
+
+#### uint16_t SunFounderPowerControl.readOutputCurrent()
+
+Read the output current in mA.
+
+```
+Serial.print("Output current: ");
+Serial.print(spc.readOutputCurrent());
+Serial.println(" mA");
+```
+
+#### uint16_t SunFounderPowerControl.readBatteryVoltage()
+
+Read the battery voltage in mV.
+
+```
+Serial.print("Battery voltage: ");
+Serial.print(spc.readBatteryVoltage());
+Serial.println(" mV");
+```
+
+#### int16_t SunFounderPowerControl.readBatteryCurrent()
+
+Read the battery current in mA.
+
+```
+Serial.print("Battery current: ");
+Serial.print(spc.readBatteryCurrent());
+Serial.println(" mA");
+```
+
+#### uint8_t SunFounderPowerControl.readBatteryPercentage()
+
+Read the battery percentage in %.
+
+```
+Serial.print("Battery percentage: ");
+Serial.print(spc.readBatteryPercentage());
+Serial.println(" %");
+```
+
+#### uint16_t SunFounderPowerControl.readBatteryCapacity()
+
+Read the battery capacity in mAh.
+
+```
+Serial.print("Battery capacity: ");
+Serial.print(spc.readBatteryCapacity());
+Serial.println(" mAh");
+```
+
+#### uint8_t SunFounderPowerControl.readPowerSource()
+
+Read the power source. 0: EXTERNAL_INPUT, 1: BATTERY.
+
+```
+uint8_t power_source = spc.readPowerSource();
+if (power_source == spc.EXTERNAL_INPUT) {
+    Serial.println("Power source: EXTERNAL_INPUT");
+} else if (power_source == spc.BATTERY) {
+    Serial.println("Power source: BATTERY");
+} else {
+    Serial.println("Unknown power source");
+}
+```
+
+#### bool SunFounderPowerControl.readIsInputPluggedIn()
+
+Read if the input is plugged in.
+
+```
+bool is_input_plugged_in = spc.readIsInputPluggedIn();
+Serial.print("Is input plugged in: ");
+Serial.println(is_input_plugged_in);
+```
+
+#### bool SunFounderPowerControl.readIsBatteryPluggedIn()
+
+Read if the battery is plugged in.
+
+```
+bool is_battery_plugged_in = spc.readIsBatteryPluggedIn();
+Serial.print("Is battery plugged in: ");
+Serial.println(is_battery_plugged_in);
+```
+
+#### bool SunFounderPowerControl.readIsCharging()
+
+Read if the battery is charging.
+
+```
+bool is_charging = spc.readIsCharging();
+Serial.print("Is charging: ");
+Serial.println(is_charging);
+```
+
+#### uint8_t SunFounderPowerControl.readFanPower()
+
+Read the fan power in %.
+
+```
+uint8_t fan_power = spc.readFanPower();
+Serial.print("Fan power: ");
+Serial.println(fan_power);
+```
+
+#### uint8_t SunFounderPowerControl.readShutdownRequest()
+
+Read if a shutdown request is received. 0: None, 1: Low battery, 2: Button.
+
+```
+uint8_t shutdown_request = spc.readShutdownRequest();
+if (shutdown_request == spc.SHUTDOWN_REQUEST_NONE) {
+    Serial.println("Shutdown request: None");
+} else if (shutdown_request == spc.SHUTDOWN_REQUEST_LOW_BATTERY) {
+    Serial.println("Shutdown request: Low battery");
+} else if (shutdown_request == spc.SHUTDOWN_REQUEST_BUTTON) {
+    Serial.println("Shutdown request: Button");
+} else {
+    Serial.println("Unknown shutdown request");
+}
+```
+
+#### bool SunFounderPowerControl.readAlwaysOn()
+
+Read if the always-on mode is enabled.
+
+```
+bool always_on = spc.readAlwaysOn();
+Serial.print("Always on: ");
+Serial.println(always_on);
+```
+
+#### uint16_t SunFounderPowerControl.readPowerSourceVoltage()
+
+Read the power source voltage in mV.
+
+```
+uint16_t power_source_voltage = spc.readPowerSourceVoltage();
+Serial.print("Power source voltage: ");
+Serial.println(power_source_voltage);
+```
+
+#### uint8_t SunFounderPowerControl.readShutdownPercentage()
+
+Read the shutdown percentage in %.
+
+```
+uint8_t shutdown_percentage = spc.readShutdownPercentage();
+Serial.print("Shutdown percentage: ");
+Serial.println(shutdown_percentage);
+```
+
+
+#### uint8_t SunFounderPowerControl.readPowerOffPercentage()
+
+Read the power off percentage in %.
+
+```
+uint8_t power_off_percentage = spc.readPowerOffPercentage();
+Serial.print("Power off percentage: ");
+Serial.println(power_off_percentage);
+```
+
+#### void SunFounderPowerControl.readAll()
+
+Read all avaliable the data into the class.
+
+```
+spc.readAll();
+Serial.println(spc.inputVoltage);
+Serial.println(spc.inputCurrent);
+Serial.println(spc.outputVoltage);
+```
+
+#### void SunFounderPowerControl.writeFanPower(uint8_t power)
+
+Write the fan power in %.
+
+```
+spc.writeFanPower(50);
+```
+
+#### void SunFounderPowerControl.writeShutdownPercentage(uint8_t percentage)
+
+Write the shutdown percentage in %. Range: 10-100
+
+```
+spc.writeShutdownPercentage(10);
+```
+
+#### void SunFounderPowerControl.writePowerOffPercentage(uint8_t percentage)
+
+Write the power off percentage in %. Range: 5-100
+
+```
+spc.writePowerOffPercentage(10);
+```
+
+### Constants
+
+#### POWER_SOURCE_EXTERNAL
+
+Power source: EXTERNAL_INPUT.
+
+#### POWER_SOURCE_BATTERY
+
+Power source: BATTERY.
+
+#### SHUTDOWN_REQUEST_NONE
+
+Shutdown request: None.
+
+#### SHUTDOWN_REQUEST_LOW_BATTERY
+
+Shutdown request: Low battery.
+
+#### SHUTDOWN_REQUEST_BUTTON
+
+Shutdown request: Button.
+
 ## Data Buffer Sheet
 
 ### dataBuffer

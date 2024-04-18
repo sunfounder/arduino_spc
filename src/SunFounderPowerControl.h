@@ -73,9 +73,9 @@ class SunFounderPowerControl {
     SunFounderPowerControl();
     int8_t begin();
     uint16_t readInputVoltage();
-    int16_t readInputCurrent();
+    uint16_t readInputCurrent();
     uint16_t readOutputVoltage();
-    int16_t readOutputCurrent();
+    uint16_t readOutputCurrent();
     uint16_t readBatteryVoltage();
     int16_t readBatteryCurrent();
     uint8_t readBatteryPercentage();

@@ -34,12 +34,12 @@ uint16_t SunFounderPowerControl::readInputVoltage() {
   return i2c.readU16(REG_READ_INPUT_VOLTAGE);
 }
 
-int16_t SunFounderPowerControl::readInputCurrent() {
+uint16_t SunFounderPowerControl::readInputCurrent() {
   if (!this->device.peripherals.input_current)  {
     Serial.println("[Warning] Device does not support reading input current");
     return -1;
   }
-  return i2c.readS16(REG_READ_INPUT_CURRENT);
+  return i2c.readU16(REG_READ_INPUT_CURRENT);
 }
 
 uint16_t SunFounderPowerControl::readOutputVoltage() {
@@ -50,12 +50,12 @@ uint16_t SunFounderPowerControl::readOutputVoltage() {
   return i2c.readU16(REG_READ_OUTPUT_VOLTAGE);
 }
 
-int16_t SunFounderPowerControl::readOutputCurrent() {
+uint16_t SunFounderPowerControl::readOutputCurrent() {
   if (!this->device.peripherals.output_current) {
     Serial.println("[Warning] Device does not support reading output current");
     return -1;
   }
-  return i2c.readS16(REG_READ_OUTPUT_CURRENT);
+  return i2c.readU16(REG_READ_OUTPUT_CURRENT);
 }
 
 uint16_t SunFounderPowerControl::readBatteryVoltage() {
