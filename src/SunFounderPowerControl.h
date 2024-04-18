@@ -12,8 +12,13 @@
 #define SHUTDOWN_REQUEST_LOW_BATTERY 0x01
 #define SHUTDOWN_REQUEST_BUTTON 0x02
 
+#define SHUTDOWN_PERCENTAGE_MIN 10
+#define SHUTDOWN_PERCENTAGE_MAX 100
+#define POWER_OFF_PERCENTAGE_MIN 10
+#define POWER_OFF_PERCENTAGE_MAX 100
+
 #define REG_READ_START 0x00
-#define REG_READ_COMMON_COUNT 22
+#define REG_READ_COMMON_LENGTH 21
 
 #define REG_READ_INPUT_VOLTAGE 0x00
 #define REG_READ_INPUT_CURRENT 0x02
@@ -29,7 +34,6 @@
 #define REG_READ_IS_CHARGING 0x12
 #define REG_READ_FAN_POWER 0x13
 #define REG_READ_SHUTDOWN_REQUEST 0x14
-#define REG_READ_SHUTDOWN_BATTERY_PERCENTAGE 0x15
 
 #define REG_READ_FIRMWARE_VERSION_MAJOR 0x80
 #define REG_READ_FIRMWARE_VERSION_MINOR 0x81
@@ -45,6 +49,8 @@
 #define REG_READ_IS_ALWAYS_ON 0x8B
 #define REG_READ_BOARD_ID 0x8C
 #define REG_READ_POWER_SOURCE_VOLTAGE 0x8D
+#define REG_READ_SHUTDOWN_PERCENTAGE 0x8F
+#define REG_READ_POWER_OFF_PERCENTAGE 0x90
 
 #define REG_WRITE_FAN_POWER 0x00
 #define REG_WRITE_RTC_YEAR 0x01
@@ -55,7 +61,8 @@
 #define REG_WRITE_RTC_SECOND 0x06
 #define REG_WRITE_RTC_MILLISECOND 0x07
 #define REG_WRITE_RTC_SETTING 0x08
-#define REG_WRITE_SHUTDOWN_BATTERY_PERCENTAGE 0x09
+#define REG_WRITE_SHUTDOWN_PERCENTAGE 0x09
+#define REG_WRITE_POWER_OFF_PERCENTAGE 0x0A
 
 extern device_t DEVICES[];
 extern uint8_t DEVICE_ADDRESSES[];
@@ -80,15 +87,17 @@ class SunFounderPowerControl {
     bool readIsCharging();
     uint8_t readFanPower();
     uint8_t readShutdownRequest();
-    uint8_t readShutdownBatteryPercentage();
     void readAll();
 
     bool readIsAlwaysOn();
     uint8_t readBoardId();
     uint16_t readPowerSourceVoltage();
+    uint8_t readShutdownPercentage();
+    uint8_t readPowerOffPercentage();
 
     void writeFanPower(uint8_t power);
-    void writeShutdownBatteryPercentage(uint8_t percentage);
+    void writeShutdownPercentage(uint8_t percentage);
+    void writePowerOffPercentage(uint8_t percentage);
     uint8_t firmwareVersionMajor;
     uint8_t firmwareVersionMinor;
     uint8_t firmwareVersionPatch;
@@ -109,7 +118,6 @@ class SunFounderPowerControl {
     bool isCharging;
     uint8_t fanPower;
     uint8_t shutdownRequest;
-    uint8_t shutdownBatteryPercentage;
 
   private:
     uint8_t address;

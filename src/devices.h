@@ -10,7 +10,8 @@ typedef struct {
     bool battery_capacity;
     bool battery_percentage;
     bool is_charging;
-    bool shutdown_battery_percentage;
+    bool shutdown_percentage;
+    bool power_off_percentage;
     // input
     bool input_voltage;
     bool input_current;

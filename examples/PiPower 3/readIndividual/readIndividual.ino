@@ -21,32 +21,30 @@ void setup() {
 }
 
 void loop() {
-  Serial.println("Battery:");
+  Serial.print("Input voltage: ");
+  Serial.print(spc.readInputVoltage());
+  Serial.println(" mV");
+  Serial.print("Output voltage: ");
+  Serial.print(spc.readOutputVoltage());
+  Serial.println(" mV");
   Serial.print("Battery voltage: ");
   Serial.print(spc.readBatteryVoltage());
   Serial.println(" mV");
   Serial.print("Battery percentage: ");
   Serial.print(spc.readBatteryPercentage());
   Serial.println(" %");
+  uint8_t powerSource = spc.readPowerSource();
+  Serial.print("Power source: ");
+  Serial.print(powerSource);
+  Serial.print(" - ");
+  Serial.println(powerSource == POWER_SOURCE_EXTERNAL ? "External" : "Battery");
+  Serial.print("Is input plugged in: ");
+  Serial.println(spc.readIsInputPluggedIn() ? "Yes" : "No");
+  Serial.print("Is battery plugged in: ");
+  Serial.println(spc.readIsBatteryPluggedIn() ? "Yes" : "No");
   Serial.print("Is charging: ");
   Serial.println(spc.readIsCharging() ? "Yes" : "No");
-  Serial.println("Input:");
-  Serial.print("Is plugged in: ");
-  Serial.println(spc.readIsInputPluggedIn() ? "Yes" : "No");
-  Serial.print("Input voltage: ");
-  Serial.print(spc.readInputVoltage());
-  Serial.println(" mV");
-  Serial.println("Output:");
-  Serial.print("Output voltage: ");
-  Serial.print(spc.readOutputVoltage());
-  Serial.println(" mV");
-  Serial.print("Power source: ");
-  Serial.println(spc.readPowerSource() == POWER_SOURCE_EXTERNAL ? "External"
-                                                                : "Battery");
-  Serial.println("Other values:");
-  Serial.print("Shutdown battery percentage: ");
-  Serial.print(spc.readShutdownBatteryPercentage());
-  Serial.println(" %");
+  Serial.println("Internal data:");
   Serial.print("Shutdown request: ");
   uint8_t shutdownRequest = spc.readShutdownRequest();
   Serial.print(shutdownRequest);
@@ -65,6 +63,13 @@ void loop() {
   Serial.println(" mV");
   Serial.print("Always on: ");
   Serial.println(spc.readIsAlwaysOn() ? "Yes" : "No");
+  Serial.print("Shutdown percentage: ");
+  Serial.print(spc.readShutdownPercentage());
+  Serial.println(" %");
+  Serial.print("Power off percentage: ");
+  Serial.print(spc.readPowerOffPercentage());
+  Serial.println(" %");
+
   Serial.println("");
 
   delay(1000);

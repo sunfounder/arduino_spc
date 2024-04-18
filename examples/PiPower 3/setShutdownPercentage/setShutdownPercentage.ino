@@ -18,42 +18,44 @@ void setup() {
   Serial.println(spc.device.name);
   Serial.print("Firmware Version: ");
   Serial.println(spc.firmwareVersion.c_str());
-  Serial.print("Shutdown battery percentage: ");
-  Serial.println(spc.readShutdownBatteryPercentage());
+  Serial.println("Set shutdown percentage example, shutdown percentage means if it's not charging, and the battery percentage is less than the shutdown percentage, it will give a shutdown request Low Battery, for device to safely shutdown.");
+  delay(2000);
+  Serial.print("Shutdown percentage: ");
+  Serial.println(spc.readShutdownPercentage());
   delay(2000);
 
-  Serial.println("Setting shutdown battery percentage to 20%");
-  spc.writeShutdownBatteryPercentage(20);
-  delay(2000); // Wait for the shutdown battery percentage to be updated
-  int current_shutdown_battery_percentage = spc.readShutdownBatteryPercentage();
-  Serial.print("Shutdown battery percentage: ");
-  Serial.println(current_shutdown_battery_percentage);
-  if (current_shutdown_battery_percentage == 20) {
+  Serial.println("Setting shutdown percentage to 20%");
+  spc.writeShutdownPercentage(20);
+  delay(2000); // Wait for the shutdown percentage to be updated
+  int current_shutdown_percentage = spc.readShutdownPercentage();
+  Serial.print("Shutdown percentage: ");
+  Serial.println(current_shutdown_percentage);
+  if (current_shutdown_percentage == 20) {
     Serial.println("Success");
   }
   delay(2000);
 
-  Serial.println("Setting shutdown battery percentage to 10%");
-  spc.writeShutdownBatteryPercentage(10);
-  delay(2000); // Wait for the shutdown battery percentage to be updated
-  current_shutdown_battery_percentage = spc.readShutdownBatteryPercentage();
-  Serial.print("Shutdown battery percentage: ");
-  Serial.println(current_shutdown_battery_percentage);
-  if (current_shutdown_battery_percentage == 10) {
+  Serial.println("Setting shutdown percentage to 10%");
+  spc.writeShutdownPercentage(10);
+  delay(2000); // Wait for the shutdown percentage to be updated
+  current_shutdown_percentage = spc.readShutdownPercentage();
+  Serial.print("Shutdown percentage: ");
+  Serial.println(current_shutdown_percentage);
+  if (current_shutdown_percentage == 10) {
     Serial.println("Success");
   }
   delay(2000);
 
-  Serial.println("Setting shutdown battery percentage to 5%");
-  spc.writeShutdownBatteryPercentage(5);
-  delay(2000); // Wait for the shutdown battery percentage to be updated
-  current_shutdown_battery_percentage = spc.readShutdownBatteryPercentage();
-  Serial.print("Shutdown battery percentage: ");
-  Serial.println(current_shutdown_battery_percentage);
-  if (current_shutdown_battery_percentage == 5) {
+  Serial.println("Setting shutdown percentage to 5%");
+  spc.writeShutdownPercentage(5);
+  delay(2000); // Wait for the shutdown percentage to be updated
+  current_shutdown_percentage = spc.readShutdownPercentage();
+  Serial.print("Shutdown percentage: ");
+  Serial.println(current_shutdown_percentage);
+  if (current_shutdown_percentage == 5) {
     Serial.println("Success");
   } else {
-    Serial.println("Failed, shutdown battery percentage minimal is 10%");
+    Serial.println("Failed, shutdown percentage minimal is 10%");
   }
 }
 
