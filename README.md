@@ -20,7 +20,6 @@
 |is_charging|18|1|u8|-| 0, not charging; <br> 1, charging;|
 |fan_power|19|1|u8|-| 0 ~ 100|
 |shutdown_request|20|1|u8|-| 1, Key shutdown request; <br> 1, Low battery shutdown request;|
-|shutdown_battery_pct|21|1|u8|-| Current low battery shutdown percentage threshold|
 |-|-|-|-|-|-|
 |-|-|-|-|-|-|
 |firmware_version_major|128|1|u8|-|-|
@@ -37,6 +36,8 @@
 |alwaysOn|139|1|u8|-|0, Enable alwaysOn <br> 1, Disable alwaysOn|
 |board_id|140|1|u8|-|0, Pironman U1 <br> 1, Pironman 4 <br> 2, Pipower 3|
 |powerSourceVoltage|141|2|u16|-|-|
+|shutdown_percentage|143|1|u8|-| Current low battery shutdown percentage threshold|
+|power_off_percentage|144|1|u8|-| Current low battery power off percentage threshold|
 |-|-|-|-|-|-|
 |-|-|-|-|-|-|
 
@@ -53,6 +54,7 @@
 |rtc_second|6|1|u8|-|setting rtc_second|
 |rtc_ssec|7|1|u8|-|setting rtc 1/128 second|
 |rtc_setting|8|1|u8|-|1, enable rtc setting|
-|shutdown_battery_pct|9|1|u8|-|setting low battery shutdown percentage threshold (0~100)|
+|shutdown_percentage|9|1|u8|-|setting low battery shutdown percentage threshold (0~100)|
+|power_off_percentage|10|1|u8|-|setting low battery power off percentage threshold (0~100)|
 |-|-|-|-|-|-|
 |-|-|-|-|-|-|
