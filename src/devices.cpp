@@ -15,7 +15,7 @@ device_t pironman_u1 = {.name = "Pironman",
                                         .power_off_percentage = false,
                                         .input_voltage = true,
                                         .input_current = true,
-                                        .is_plugged_in = true,
+                                        .is_input_plugged_in = true,
                                         .output_voltage = true,
                                         .output_current = true,
                                         .fan_power = true,
@@ -23,8 +23,7 @@ device_t pironman_u1 = {.name = "Pironman",
                                         .power_source = true,
                                         .shutdown_request = true,
                                         .ref_voltage = true,
-                                        .power_source_voltage = false,
-                                        .always_on = false}};
+                                        .default_on = false}};
 
 device_t pipower3 = {.name = "PiPower 3",
                      .id = "PiPower-3",
@@ -38,7 +37,7 @@ device_t pipower3 = {.name = "PiPower 3",
                                      .power_off_percentage = true,
                                      .input_voltage = true,
                                      .input_current = false,
-                                     .is_plugged_in = true,
+                                     .is_input_plugged_in = true,
                                      .output_voltage = true,
                                      .output_current = false,
                                      .fan_power = false,
@@ -46,7 +45,6 @@ device_t pipower3 = {.name = "PiPower 3",
                                      .power_source = true,
                                      .shutdown_request = true,
                                      .ref_voltage = false,
-                                     .power_source_voltage = true,
-                                     .always_on = true}};
+                                     .default_on = true}};
 
 extern device_t DEVICES[] = {pironman_u1, pipower3};

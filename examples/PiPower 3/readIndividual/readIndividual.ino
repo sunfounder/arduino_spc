@@ -40,8 +40,6 @@ void loop() {
   Serial.println(powerSource == POWER_SOURCE_EXTERNAL ? "External" : "Battery");
   Serial.print("Is input plugged in: ");
   Serial.println(spc.readIsInputPluggedIn() ? "Yes" : "No");
-  Serial.print("Is battery plugged in: ");
-  Serial.println(spc.readIsBatteryPluggedIn() ? "Yes" : "No");
   Serial.print("Is charging: ");
   Serial.println(spc.readIsCharging() ? "Yes" : "No");
   Serial.println("Internal data:");
@@ -58,11 +56,8 @@ void loop() {
   } else {
     Serial.println("Unknown");
   }
-  Serial.print("Power source voltage: ");
-  Serial.print(spc.readPowerSourceVoltage());
-  Serial.println(" mV");
-  Serial.print("Always on: ");
-  Serial.println(spc.readIsAlwaysOn() ? "Yes" : "No");
+  Serial.print("Default on: ");
+  Serial.println(spc.readIsDefaultOn() ? "Yes" : "No");
   Serial.print("Shutdown percentage: ");
   Serial.print(spc.readShutdownPercentage());
   Serial.println(" %");

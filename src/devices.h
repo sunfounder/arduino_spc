@@ -15,7 +15,7 @@ typedef struct {
     // input
     bool input_voltage;
     bool input_current;
-    bool is_plugged_in;
+    bool is_input_plugged_in;
     // output
     bool output_voltage;
     bool output_current;
@@ -25,8 +25,7 @@ typedef struct {
     bool power_source;
     bool shutdown_request;
     bool ref_voltage;
-    bool power_source_voltage;
-    bool always_on;
+    bool default_on;
 } peripherals_t;
 
 typedef struct {

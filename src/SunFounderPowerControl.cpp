@@ -99,19 +99,11 @@ uint8_t SunFounderPowerControl::readPowerSource() {
 }
 
 bool SunFounderPowerControl::readIsInputPluggedIn() {
-  if (!this->device.peripherals.is_plugged_in) {
+  if (!this->device.peripherals.is_input_plugged_in) {
     Serial.println("[Warning] Device does not support reading is input plugged in");
     return false;
   }
   return i2c.readU8(REG_READ_IS_INPUT_PLUGGED_IN);
-}
-
-bool SunFounderPowerControl::readIsBatteryPluggedIn() {
-  if (!this->device.peripherals.is_plugged_in)  {
-    Serial.println("[Warning] Device does not support reading is battery plugged in");
-    return false;
-  }
-  return i2c.readU8(REG_READ_IS_BATTERY_PLUGGED_IN);
 }
 
 bool SunFounderPowerControl::readIsCharging() {
@@ -138,24 +130,15 @@ uint8_t SunFounderPowerControl::readShutdownRequest() {
   return i2c.readU8(REG_READ_SHUTDOWN_REQUEST);
 }
 
-bool SunFounderPowerControl::readIsAlwaysOn() {
-  if (!this->device.peripherals.always_on) {
-    Serial.println("[Warning] Device does not support reading always on");
+bool SunFounderPowerControl::readIsDefaultOn() {
+  if (!this->device.peripherals.default_on) {
+    Serial.println("[Warning] Device does not support reading default on");
     return false;
   }
-  return i2c.readU8(REG_READ_IS_ALWAYS_ON);
+  return i2c.readU8(REG_READ_IS_DEFAULT_ON);
 }
 
 uint8_t SunFounderPowerControl::readBoardId() { return i2c.readU8(REG_READ_BOARD_ID); }
-
-uint16_t SunFounderPowerControl::readPowerSourceVoltage() {
-  if (!this->device.peripherals.power_source_voltage) {
-    Serial.println("[Warning] Device does not support reading power source "
-                   "voltage");
-    return -1;
-  }
-  return i2c.readU16(REG_READ_POWER_SOURCE_VOLTAGE);
-}
 
 uint8_t SunFounderPowerControl::readShutdownPercentage() {
   if (!this->device.peripherals.shutdown_percentage) {
@@ -219,7 +202,6 @@ void SunFounderPowerControl::readAll() {
   this->batteryCapacity = buffer[14] << 8 | buffer[13];
   this->powerSource = buffer[15];
   this->isInputPluggedIn = buffer[16];
-  this->isBatteryPluggedIn = buffer[17];
   this->isCharging = buffer[18];
   this->fanPower = buffer[19];
   this->shutdownRequest = buffer[20];
