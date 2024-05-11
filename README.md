@@ -21,13 +21,11 @@
       - [bool SunFounderPowerControl.readIsCharging()](#bool-sunfounderpowercontrolreadischarging)
       - [uint8\_t SunFounderPowerControl.readFanPower()](#uint8_t-sunfounderpowercontrolreadfanpower)
       - [uint8\_t SunFounderPowerControl.readShutdownRequest()](#uint8_t-sunfounderpowercontrolreadshutdownrequest)
-      - [bool SunFounderPowerControl.readDefaultOn()](#bool-sunfounderpowercontrolreadDefaulton)
+      - [bool SunFounderPowerControl.readDefaultOn()](#bool-sunfounderpowercontrolreaddefaulton)
       - [uint8\_t SunFounderPowerControl.readShutdownPercentage()](#uint8_t-sunfounderpowercontrolreadshutdownpercentage)
-      - [uint8\_t SunFounderPowerControl.readPowerOffPercentage()](#uint8_t-sunfounderpowercontrolreadpoweroffpercentage)
       - [void SunFounderPowerControl.readAll()](#void-sunfounderpowercontrolreadall)
       - [void SunFounderPowerControl.writeFanPower(uint8\_t power)](#void-sunfounderpowercontrolwritefanpoweruint8_t-power)
       - [void SunFounderPowerControl.writeShutdownPercentage(uint8\_t percentage)](#void-sunfounderpowercontrolwriteshutdownpercentageuint8_t-percentage)
-      - [void SunFounderPowerControl.writePowerOffPercentage(uint8\_t percentage)](#void-sunfounderpowercontrolwritepoweroffpercentageuint8_t-percentage)
     - [Constants](#constants)
       - [POWER\_SOURCE\_EXTERNAL](#power_source_external)
       - [POWER\_SOURCE\_BATTERY](#power_source_battery)
@@ -244,17 +242,6 @@ Serial.print("Shutdown percentage: ");
 Serial.println(shutdown_percentage);
 ```
 
-
-#### uint8_t SunFounderPowerControl.readPowerOffPercentage()
-
-Read the power off percentage in %.
-
-```
-uint8_t power_off_percentage = spc.readPowerOffPercentage();
-Serial.print("Power off percentage: ");
-Serial.println(power_off_percentage);
-```
-
 #### void SunFounderPowerControl.readAll()
 
 Read all avaliable the data into the class.
@@ -280,14 +267,6 @@ Write the shutdown percentage in %. Range: 10-100
 
 ```
 spc.writeShutdownPercentage(10);
-```
-
-#### void SunFounderPowerControl.writePowerOffPercentage(uint8_t percentage)
-
-Write the power off percentage in %. Range: 5-100
-
-```
-spc.writePowerOffPercentage(10);
 ```
 
 ### Constants

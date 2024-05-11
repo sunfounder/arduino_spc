@@ -61,9 +61,6 @@ void loop() {
   Serial.print("Shutdown percentage: ");
   Serial.print(spc.readShutdownPercentage());
   Serial.println(" %");
-  Serial.print("Power off percentage: ");
-  Serial.print(spc.readPowerOffPercentage());
-  Serial.println(" %");
 
   Serial.println("");
 
