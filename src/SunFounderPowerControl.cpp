@@ -148,14 +148,6 @@ uint8_t SunFounderPowerControl::readShutdownPercentage() {
   return i2c.readU8(REG_READ_SHUTDOWN_PERCENTAGE);
 }
 
-uint8_t SunFounderPowerControl::readPowerOffPercentage() {
-  if (!this->device.peripherals.power_off_percentage) {
-    Serial.println("[Warning] Device does not support reading power off percentage");
-    return -1;
-  }
-  return i2c.readU8(REG_READ_POWER_OFF_PERCENTAGE);
-}
-
 void SunFounderPowerControl::writeFanPower(uint8_t power) {
   if (!this->device.peripherals.fan_power) {
     Serial.println("[Warning] Device does not support setting fan power");
@@ -171,15 +163,6 @@ void SunFounderPowerControl::writeShutdownPercentage(uint8_t percentage) {
   }
   percentage = constrain(percentage, SHUTDOWN_PERCENTAGE_MIN, SHUTDOWN_PERCENTAGE_MAX);
   i2c.writeU8(REG_WRITE_SHUTDOWN_PERCENTAGE, percentage);
-}
-
-void SunFounderPowerControl::writePowerOffPercentage(uint8_t percentage) {
-  if (!this->device.peripherals.power_off_percentage) {
-    Serial.println("[Warning] Device does not support setting power off percentage");
-    return;
-  }
-  percentage = constrain(percentage, POWER_OFF_PERCENTAGE_MIN, POWER_OFF_PERCENTAGE_MAX);
-  i2c.writeU8(REG_WRITE_POWER_OFF_PERCENTAGE, percentage);
 }
 
 void SunFounderPowerControl::readAll() {

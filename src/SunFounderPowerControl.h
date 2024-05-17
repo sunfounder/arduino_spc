@@ -89,11 +89,9 @@ class SunFounderPowerControl {
     bool readIsDefaultOn();
     uint8_t readBoardId();
     uint8_t readShutdownPercentage();
-    uint8_t readPowerOffPercentage();
 
     void writeFanPower(uint8_t power);
     void writeShutdownPercentage(uint8_t percentage);
-    void writePowerOffPercentage(uint8_t percentage);
     uint8_t firmwareVersionMajor;
     uint8_t firmwareVersionMinor;
     uint8_t firmwareVersionPatch;
