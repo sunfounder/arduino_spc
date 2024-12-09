@@ -3,64 +3,73 @@
 
 SunFounderPowerControl spc;
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
   Serial.println(F("PiPower 3 Read Individually"));
   Wire.begin();
 
-  int8_t result = spc.begin();
-  if (result == -1) {
-    Serial.println("[ERROR] Device not found");
-    while (1);;
+  while (spc.begin() == -1)
+  {
+    Serial.println(F("[ERROR] Device not found"));
+    delay(3000);
   }
-  Serial.println("Device found");
-  Serial.print("Device name: ");
+  Serial.println(F("Device found"));
+  Serial.print(F("Device name: "));
   Serial.println(spc.device.name);
-  Serial.print("Firmware version: ");
+  Serial.print(F("Firmware version: "));
   Serial.println(spc.firmwareVersion.c_str());
 }
 
-void loop() {
-  Serial.print("Input voltage: ");
+void loop()
+{
+  Serial.print(F("Input voltage: "));
   Serial.print(spc.readInputVoltage());
-  Serial.println(" mV");
-  Serial.print("Output voltage: ");
+  Serial.println(F(" mV"));
+  Serial.print(F("Output voltage: "));
   Serial.print(spc.readOutputVoltage());
-  Serial.println(" mV");
-  Serial.print("Battery voltage: ");
+  Serial.println(F(" mV"));
+  Serial.print(F("Battery voltage: "));
   Serial.print(spc.readBatteryVoltage());
-  Serial.println(" mV");
-  Serial.print("Battery percentage: ");
+  Serial.println(F(" mV"));
+  Serial.print(F("Battery percentage: "));
   Serial.print(spc.readBatteryPercentage());
-  Serial.println(" %");
+  Serial.println(F(" %"));
   uint8_t powerSource = spc.readPowerSource();
-  Serial.print("Power source: ");
+  Serial.print(F("Power source: "));
   Serial.print(powerSource);
-  Serial.print(" - ");
+  Serial.print(F(" - "));
   Serial.println(powerSource == POWER_SOURCE_EXTERNAL ? "External" : "Battery");
-  Serial.print("Is input plugged in: ");
+  Serial.print(F("Is input plugged in: "));
   Serial.println(spc.readIsInputPluggedIn() ? "Yes" : "No");
-  Serial.print("Is charging: ");
+  Serial.print(F("Is charging: "));
   Serial.println(spc.readIsCharging() ? "Yes" : "No");
-  Serial.println("Internal data:");
-  Serial.print("Shutdown request: ");
+  Serial.println(F("Internal data:"));
+  Serial.print(F("Shutdown request: "));
   uint8_t shutdownRequest = spc.readShutdownRequest();
   Serial.print(shutdownRequest);
-  Serial.print(" - ");
-  if (shutdownRequest == SHUTDOWN_REQUEST_NONE) {
-    Serial.println("None");
-  } else if (shutdownRequest == SHUTDOWN_REQUEST_LOW_BATTERY) {
-    Serial.println("Low battery");
-  } else if (shutdownRequest == SHUTDOWN_REQUEST_BUTTON) {
-    Serial.println("Button");
-  } else {
-    Serial.println("Unknown");
+  Serial.print(F(" - "));
+  if (shutdownRequest == SHUTDOWN_REQUEST_NONE)
+  {
+    Serial.println(F("None"));
   }
-  Serial.print("Default on: ");
+  else if (shutdownRequest == SHUTDOWN_REQUEST_LOW_BATTERY)
+  {
+    Serial.println(F("Low battery"));
+  }
+  else if (shutdownRequest == SHUTDOWN_REQUEST_BUTTON)
+  {
+    Serial.println(F("Button"));
+  }
+  else
+  {
+    Serial.println(F("Unknown"));
+  }
+  Serial.print(F("Default on: "));
   Serial.println(spc.readIsDefaultOn() ? "Yes" : "No");
-  Serial.print("Shutdown percentage: ");
+  Serial.print(F("Shutdown percentage: "));
   Serial.print(spc.readShutdownPercentage());
-  Serial.println(" %");
+  Serial.println(F(" %"));
 
   Serial.println("");
 

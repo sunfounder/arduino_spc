@@ -10,41 +10,58 @@ SunFounderPowerControl spc;
 
 uint8_t SDSIG = 2;
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
   Serial.println(F("PiPower 3 Shutdown When Requested"));
   Wire.begin();
   pinMode(SDSIG, OUTPUT);
   digitalWrite(SDSIG, LOW);
 
-  int8_t result = spc.begin();
-  if (result == -1) {
-    Serial.println("[ERROR] Device not found");
-    while (1);;
+  while (spc.begin() == -1)
+  {
+    Serial.println(F("[ERROR] Device not found"));
+    delay(3000);
   }
-  Serial.println("Device found");
-  Serial.print("Device name: ");
+
+  Serial.println(F("Device found"));
+  Serial.print(F("Device name: "));
   Serial.println(spc.device.name);
-  Serial.print("Firmware version: ");
+  Serial.print(F("Firmware version: "));
   Serial.println(spc.firmwareVersion.c_str());
 }
 
-void loop() {
+void loop()
+{
+  delay(1000);
+
   uint8_t shutdownRequest = spc.readShutdownRequest();
-  if (shutdownRequest != SHUTDOWN_REQUEST_NONE) {
-    Serial.print("Shutdown request: ");
+
+  if (shutdownRequest != SHUTDOWN_REQUEST_NONE)
+  {
+    Serial.print(F("Shutdown request: "));
     Serial.print(shutdownRequest);
-    Serial.print(" - ");
-    if (shutdownRequest == SHUTDOWN_REQUEST_LOW_BATTERY) {
-      Serial.println("Low battery");
-    } else if (shutdownRequest == SHUTDOWN_REQUEST_BUTTON) {
-      Serial.println("Button");
-    } else {
-      Serial.println("Unknown");
+    Serial.print(F(" - "));
+    if (shutdownRequest == SHUTDOWN_REQUEST_LOW_BATTERY)
+    {
+      Serial.println(F("Low battery"));
     }
-    Serial.println("Shutting down...");
+    else if (shutdownRequest == SHUTDOWN_REQUEST_BUTTON)
+    {
+      Serial.println(F("Button"));
+    }
+    else
+    {
+      Serial.println(F("Unknown"));
+      digitalWrite(SDSIG, LOW);
+      return;
+    }
+    Serial.println(F("Shutting down..."));
     // Do something before shutting down
     digitalWrite(SDSIG, HIGH);
   }
-  delay(1000);
+  else
+  {
+    digitalWrite(SDSIG, LOW);
+  }
 }
