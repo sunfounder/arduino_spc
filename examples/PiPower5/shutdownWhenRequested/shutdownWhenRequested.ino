@@ -29,6 +29,10 @@ void setup()
   Serial.println(spc.device.name);
   Serial.print(F("Firmware version: "));
   Serial.println(spc.firmwareVersion.c_str());
+
+  Serial.println(F(
+      "\nShutdown when request example:\n"
+      "wait until battery dying or hold button 2 seconds then release.\n"));
 }
 
 void loop()
