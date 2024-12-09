@@ -66,57 +66,58 @@ extern device_t DEVICES[];
 extern uint8_t DEVICE_ADDRESSES[];
 extern uint8_t DEVICE_COUNT;
 
-class SunFounderPowerControl {
-  public:
-    SunFounderPowerControl();
-    int8_t begin();
-    uint16_t readInputVoltage();
-    uint16_t readInputCurrent();
-    uint16_t readOutputVoltage();
-    uint16_t readOutputCurrent();
-    uint16_t readBatteryVoltage();
-    int16_t readBatteryCurrent();
-    uint8_t readBatteryPercentage();
-    uint16_t readBatteryCapacity();
-    uint16_t readReferenceVoltage();
-    uint8_t readPowerSource();
-    bool readIsInputPluggedIn();
-    bool readIsCharging();
-    uint8_t readFanPower();
-    uint8_t readShutdownRequest();
-    void readAll();
+class SunFounderPowerControl
+{
+public:
+  SunFounderPowerControl();
+  int8_t begin();
+  uint16_t readInputVoltage();
+  uint16_t readInputCurrent();
+  uint16_t readOutputVoltage();
+  uint16_t readOutputCurrent();
+  uint16_t readBatteryVoltage();
+  int16_t readBatteryCurrent();
+  uint8_t readBatteryPercentage();
+  uint16_t readBatteryCapacity();
+  uint16_t readReferenceVoltage();
+  uint8_t readPowerSource();
+  bool readIsInputPluggedIn();
+  bool readIsCharging();
+  uint8_t readFanPower();
+  uint8_t readShutdownRequest();
+  void readAll();
 
-    bool readIsDefaultOn();
-    uint8_t readBoardId();
-    uint8_t readShutdownPercentage();
+  bool readIsDefaultOn();
+  uint8_t readBoardId();
+  uint8_t readShutdownPercentage();
 
-    void writeFanPower(uint8_t power);
-    void writeShutdownPercentage(uint8_t percentage);
-    uint8_t firmwareVersionMajor;
-    uint8_t firmwareVersionMinor;
-    uint8_t firmwareVersionPatch;
-    String firmwareVersion;
-    device_t device;
+  void writeFanPower(uint8_t power);
+  void writeShutdownPercentage(uint8_t percentage);
+  uint8_t firmwareVersionMajor;
+  uint8_t firmwareVersionMinor;
+  uint8_t firmwareVersionPatch;
+  String firmwareVersion;
+  device_t device;
 
-    uint16_t inputVoltage;
-    int16_t inputCurrent;
-    uint16_t outputVoltage;
-    int16_t outputCurrent;
-    uint16_t batteryVoltage;
-    int16_t batteryCurrent;
-    uint8_t batteryPercentage;
-    uint16_t batteryCapacity;
-    uint8_t powerSource;
-    bool isInputPluggedIn;
-    bool isCharging;
-    uint8_t fanPower;
-    uint8_t shutdownRequest;
+  uint16_t inputVoltage;
+  int16_t inputCurrent;
+  uint16_t outputVoltage;
+  int16_t outputCurrent;
+  uint16_t batteryVoltage;
+  int16_t batteryCurrent;
+  uint8_t batteryPercentage;
+  uint16_t batteryCapacity;
+  uint8_t powerSource;
+  bool isInputPluggedIn;
+  bool isCharging;
+  uint8_t fanPower;
+  uint8_t shutdownRequest;
 
-  private:
-    uint8_t address;
-    I2C i2c;
+private:
+  uint8_t address;
+  I2C i2c;
 
-    String readFirmwareVersion();
+  String readFirmwareVersion();
 };
 
 #endif // __SPC_H__

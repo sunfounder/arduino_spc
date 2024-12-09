@@ -1,7 +1,7 @@
 #include "devices.h"
 
-extern uint8_t DEVICE_ADDRESSES[] = {0x5A, 0x5B};
-extern uint8_t DEVICE_COUNT = 2;
+extern uint8_t DEVICE_ADDRESSES[] = {0x5A, 0x5B, 0x5C};
+extern uint8_t DEVICE_COUNT = 3;
 
 device_t pironman_u1 = {.name = "Pironman",
                         .id = "Pironman-U1",
@@ -45,4 +45,25 @@ device_t pipower3 = {.name = "PiPower 3",
                                      .ref_voltage = false,
                                      .default_on = true}};
 
-extern device_t DEVICES[] = {pironman_u1, pipower3};
+device_t pipower5 = {.name = "PiPower 5",
+                     .id = "PiPower-5",
+                     .address = &DEVICE_ADDRESSES[2],
+                     .peripherals = {.battery_voltage = true,
+                                     .battery_current = true,
+                                     .battery_capacity = false,
+                                     .battery_percentage = true,
+                                     .is_charging = true,
+                                     .shutdown_percentage = true,
+                                     .input_voltage = true,
+                                     .input_current = false,
+                                     .is_input_plugged_in = true,
+                                     .output_voltage = true,
+                                     .output_current = true,
+                                     .fan_power = false,
+                                     .rtc = false,
+                                     .power_source = true,
+                                     .shutdown_request = true, //
+                                     .ref_voltage = false,
+                                     .default_on = true}};
+
+extern device_t DEVICES[] = {pironman_u1, pipower3, pipower5};
